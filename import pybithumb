@@ -1,0 +1,23 @@
+import pybithumb
+
+# 初始化API
+client = pybithumb.Bithumb(api_key, api_secret)
+
+# 获取市场深度
+depth = client.get_orderbook('BTC')
+
+# 获取账户余额
+balance = client.get_balance()
+
+# 下单
+order = client.buy_limit_order(
+    'BTC',
+    price=50000,
+    amount=1
+)
+
+# 撤单
+client.cancel_order('BTC', order['orderId'])
+
+# 获取交易历史
+trades = client.get_order_detail('BTC', order['orderId'])
